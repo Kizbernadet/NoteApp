@@ -1,0 +1,76 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1">
+  <diagram name="Page-1" id="CcA-iQ07a3MPa_qm6q9e">
+    <mxGraphModel dx="1110" dy="516" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="hRiC8PRwVR607UUsUXld-1" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Account" vertex="1">
+          <mxGeometry height="208" width="283" x="317" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-2" parent="hRiC8PRwVR607UUsUXld-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ id: SERIAL PK" vertex="1">
+          <mxGeometry height="26" width="283" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-3" parent="hRiC8PRwVR607UUsUXld-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ email: TEXT NOT NULL" vertex="1">
+          <mxGeometry height="26" width="283" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-23" parent="hRiC8PRwVR607UUsUXld-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ passwordHash : TEXT NOT NULL" vertex="1">
+          <mxGeometry height="26" width="283" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-27" parent="hRiC8PRwVR607UUsUXld-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ isActived: Boolean NOT NULL DEFAULT FALSE" vertex="1">
+          <mxGeometry height="26" width="283" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-25" parent="hRiC8PRwVR607UUsUXld-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ createdAt: DATETIME DEFAULT TIMESTAMP" vertex="1">
+          <mxGeometry height="26" width="283" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-29" parent="hRiC8PRwVR607UUsUXld-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ updateAt: DATETIME DEFAULT TIMESTAMP" vertex="1">
+          <mxGeometry height="26" width="283" y="156" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-4" parent="hRiC8PRwVR607UUsUXld-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ roleId: INT FK" vertex="1">
+          <mxGeometry height="26" width="283" y="182" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-30" edge="1" parent="1" source="hRiC8PRwVR607UUsUXld-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="hRiC8PRwVR607UUsUXld-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-5" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Role" vertex="1">
+          <mxGeometry height="104" width="217" x="350" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-6" parent="hRiC8PRwVR607UUsUXld-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ id: INT PK" vertex="1">
+          <mxGeometry height="26" width="217" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-7" parent="hRiC8PRwVR607UUsUXld-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ name: TEXT NOT NULL" vertex="1">
+          <mxGeometry height="26" width="217" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-8" parent="hRiC8PRwVR607UUsUXld-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ description: TEXT DEFAULT NULL&amp;nbsp;" vertex="1">
+          <mxGeometry height="26" width="217" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-9" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="ResokedTokens" vertex="1">
+          <mxGeometry height="104" width="140" x="640" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-10" parent="hRiC8PRwVR607UUsUXld-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ field: type" vertex="1">
+          <mxGeometry height="26" width="140" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-11" parent="hRiC8PRwVR607UUsUXld-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ field: type" vertex="1">
+          <mxGeometry height="26" width="140" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-12" parent="hRiC8PRwVR607UUsUXld-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ field: type" vertex="1">
+          <mxGeometry height="26" width="140" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-17" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Admin" vertex="1">
+          <mxGeometry height="104" width="140" x="40" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-18" parent="hRiC8PRwVR607UUsUXld-17" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ field: type" vertex="1">
+          <mxGeometry height="26" width="140" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-19" parent="hRiC8PRwVR607UUsUXld-17" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ field: type" vertex="1">
+          <mxGeometry height="26" width="140" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-20" parent="hRiC8PRwVR607UUsUXld-17" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ field: type" vertex="1">
+          <mxGeometry height="26" width="140" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="hRiC8PRwVR607UUsUXld-22" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ item: attribute" vertex="1">
+          <mxGeometry height="26" width="100" x="80" y="98" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
