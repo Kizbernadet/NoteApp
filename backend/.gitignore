@@ -1,0 +1,10 @@
+# Dépendances (très lourd, on ne les envoie jamais)
+node_modules/
+
+# Variables d'environnement (contient tes mots de passe DB !)
+.env
+
+# Logs et fichiers temporaires
+npm-debug.log*
+yarn-error.log*
+.DS_Store
