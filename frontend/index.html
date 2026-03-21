@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NoteApp</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+<h2>NoteApp</h2>
+
+<!-- bouton connexion -->
+<button class="login-open-btn" onclick="openLogin()">Connexion</button>
+
+<ul>
+<li>Notes</li>
+<li>Favoris</li>
+<li>Archives</li>
+</ul>
+
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<header>
+<input type="text" placeholder="Rechercher une note...">
+</header>
+
+<section class="notes">
+
+<div class="note">
+<h3>Idée projet</h3>
+<p>Créer une application de notes avec PHP et MySQL.</p>
+</div>
+
+<div class="note">
+<h3>Courses</h3>
+<p>Lait, pain, café, fruits</p>
+</div>
+
+<div class="note">
+<h3>Rappel</h3>
+<p>Préparer présentation demain.</p>
+</div>
+
+</section>
+
+</div>
+
+</div>
+
+<!-- bouton ajouter -->
+<button class="add-btn" onclick="openModal()">+</button>
+
+<!-- modal note -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<h2>Nouvelle note</h2>
+<input type="text" placeholder="Titre">
+<textarea placeholder="Votre note"></textarea>
+<button>Enregistrer</button>
+<button onclick="closeModal()">Annuler</button>
+</div>
+</div>
+
+<!-- modal connexion -->
+<div class="modal" id="loginModal">
+
+<div class="modal-content login-box">
+
+<h2>Connexion</h2>
+
+<input type="text" placeholder="User Name">
+<input type="email" placeholder="Email">
+<input type="password" placeholder="Password">
+
+<div class="buttons">
+<button class="login">Login</button>
+<button class="signup">Inscription</button>
+</div>
+
+<button onclick="closeLogin()">Fermer</button>
+
+</div>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
