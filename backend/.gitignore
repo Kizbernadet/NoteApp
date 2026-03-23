@@ -1,5 +1,6 @@
 # Dépendances (très lourd, on ne les envoie jamais)
 node_modules/
+docs.md
 
 # Variables d'environnement (contient tes mots de passe DB !)
 .env

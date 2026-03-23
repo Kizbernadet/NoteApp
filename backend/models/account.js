@@ -22,6 +22,14 @@ const Account = sequelize.define('Account', {
     role_id: {
         type: DataTypes.INTEGER,
         allowNull: false
+    }, 
+    created_at: {
+        type: DataTypes.DATE, 
+        defaultValue: DataTypes.timestamps
+    }, 
+    updated_at: {
+        type: DataTypes.DATE, 
+        defaultValue: DataTypes.timestamps
     }
 }, {
     tableName: 'accounts', // On force le nom de la table exacte
