@@ -88,3 +88,12 @@ C'est le cerveau du modèle.
 ---
 
 **C'est cette structure que tu dois suivre pour tous tes fichiers dans `/models`. Est-ce que tu te sens prêt à l'appliquer pour créer ton fichier `Account.js` et faire ton push sur ta branche ?**
+
+
+User - test
+{
+  "email": "test@taskly.com",
+  "password": "password123",
+  "first_name": "Jean",
+  "last_name": "Test"
+}

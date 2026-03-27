@@ -30,8 +30,18 @@ Category.belongsTo(User, { foreignKey: 'user_id' });
 Category.hasMany(Note, { foreignKey: 'category_id' });
 Note.belongsTo(Category, { foreignKey: 'category_id' });
 
-Category.hasMany(Task, { foreignKey: 'category_id' });
-Task.belongsTo(Category, { foreignKey: 'category_id' });
+// Une catégorie peut avoir plusieurs tâches
+Category.hasMany(Task, { 
+    foreignKey: 'category_id',
+    as: 'tasks'
+});
+
+// Une tâche appartient à une catégorie
+Task.belongsTo(Category, { 
+    foreignKey: 'category_id', 
+    as: 'category' // C'est cet alias qui manquait !
+});
+
 
 export {
   sequelize,

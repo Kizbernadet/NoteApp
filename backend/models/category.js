@@ -10,16 +10,21 @@ const Category = sequelize.define('Category', {
     }, 
     name: {
         type: DataTypes.STRING(100), 
-        allowNull: false
+        allowNull: false, 
+        validate: {notEmpty: true}
     }, 
     color: {
         type: DataTypes.STRING(10), 
         allowNull: false, 
-        defaultValue: "#fff"
+        defaultValue: "#fff", 
+        validate: {
+            isIn : [['#fff', '#2563EB', '#10B981', '#EF4444', '#F59E0B', '#8B5CF6', '#64748B']]
+        } 
     }, 
-    user_id:{
+    user_id: {
         type: DataTypes.INTEGER, 
         allowNull: false, 
+        onDelete: 'CASCADE', 
         references: {
             model: 'users', 
             key: 'id'
@@ -30,7 +35,13 @@ const Category = sequelize.define('Category', {
     timestamps: true, 
     createdAt: 'created_at', 
     updatedAt: 'updated_at', 
-    underscored: true
+    underscored: true, 
+    indexes: [
+        {
+            unique: true,
+            fields: ['name', 'user_id'] // On lie les deux colonnes ensemble
+        }
+    ]
 });
 
 export default Category;
