@@ -37,7 +37,12 @@ Comptes tests créés
 - [ ] Filtrage par catégorie / priorité
 
 ## 📓 4. Gestion des Notes (Bonus)
-- [ ] CRUD complet des notes (À faire en fin de projet)
+- [x] Afficher toutes les notes
+- [x] Créer une nouvelle note
+- [ ] Modifier une note
+- [ ] Supprimer une note
+- [ ] Filter par catégorie / priorité
+
 
 ---
 

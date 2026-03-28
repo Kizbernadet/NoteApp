@@ -1,6 +1,6 @@
 import express from 'express';
 import authMiddleware from '../middlewares/authMiddleware.js';
-import { createNote, getAllNotes } from '../controllers/noteController.js';
+import { createNote, getAllNotes, updateNoteStatus, updateNote, deleteNote} from '../controllers/noteController.js';
 
 const router = express.Router()
 
@@ -10,6 +10,10 @@ router.use(authMiddleware);
 // 2. Définir les routes (elles sont déjà protégées par le .use ci-dessus)
 router.post('/', createNote);
 router.get('/', getAllNotes);
+router.patch('/:id', updateNoteStatus);
+router.put('/:id', updateNote);
+router.delete('/:id', deleteNote);
+
 
 router.get('/test', (req, res) => {
     res.status(200).json({

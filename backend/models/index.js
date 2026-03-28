@@ -27,8 +27,17 @@ User.hasMany(Category, { foreignKey: 'user_id' });
 Category.belongsTo(User, { foreignKey: 'user_id' });
 
 // 4. Category <-> Note / Task (1:N)
-Category.hasMany(Note, { foreignKey: 'category_id' });
-Note.belongsTo(Category, { foreignKey: 'category_id' });
+
+// Ajoute l'alias 'notes' ici pour la cohérence
+Category.hasMany(Note, { 
+  foreign_key: 'category_id', 
+  as: 'notes' 
+});
+
+Note.belongsTo(Category, { 
+  foreignKey: 'category_id', 
+  as: 'category' 
+});
 
 // Une catégorie peut avoir plusieurs tâches
 Category.hasMany(Task, { 
