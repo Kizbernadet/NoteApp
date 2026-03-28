@@ -1,8 +1,10 @@
 import { Note, User, Category } from '../models/index.js';
+import { Op } from 'sequelize';
 
 export const createNote = async (req, res) => {
     try {
-        const { title, content, category_id, is_favorite } = req.body;
+        const { title, content, is_favorite } = req.body;
+        let { category_id } = req.body;
         const accountId = req.user.accountId; // Récupéré du token via le middleware
 
         // 1. Validation du contenu (Logique métier)
@@ -19,13 +21,17 @@ export const createNote = async (req, res) => {
         }
 
         // 3. Vérification de la catégorie (doit appartenir à ce user)
-        if (category_id) {
-            const category = await Category.findOne({ 
-                where: { id: category_id, user_id: user.id } 
+        if (!category_id) {
+            const defaultCategory = await Category.findOne({ 
+                where: { name: 'Général', user_id: user.id } 
             });
-            if (!category) {
-                return res.status(403).json({ message: "Catégorie invalide ou non autorisée." });
+            if (defaultCategory) {
+                category_id = defaultCategory.id;
             }
+        } else {
+            // Si une catégorie est fournie, on vérifie qu'elle appartient au user
+            const category = await Category.findOne({ where: { id: category_id, user_id: user.id } });
+            if (!category) return res.status(403).json({ message: "Catégorie invalide." });
         }
 
         // 4. Création avec le bon ID utilisateur
@@ -152,5 +158,95 @@ export const deleteNote = async (req, res) => {
         res.json({ message: "Note supprimée définitivement." });
     } catch (error) {
         res.status(500).json({ message: "Erreur lors de la suppression." });
+    }
+};
+
+export const deleteMultipleNotes = async (req, res) => {
+    try {
+        const { ids } = req.body; // On attend un tableau d'IDs : [1, 2, 5]
+        const accountId = req.user.accountId;
+
+        if (!ids || !Array.isArray(ids) || ids.length === 0) {
+            return res.status(400).json({ message: "Aucun identifiant fourni." });
+        }
+
+        // Vérifie que tous les IDs sont des nombres
+        if (!ids.every(Number.isInteger)) {
+            return res.status(400).json({ message: "Le format des identifiants est invalide." });
+        }
+
+        const user = await User.findOne({ where: { account_id: accountId } });
+
+        const deletedCount = await Note.destroy({
+            where: {
+                id: { [Op.in]: ids },
+                user_id: user.id // Sécurité critique
+            }
+        });
+
+        res.json({ 
+            message: `${deletedCount} note(s) supprimée(s) avec succès.`,
+            count: deletedCount 
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Erreur lors de la suppression groupée." });
+    }
+};
+
+export const bulkUpdateNotes = async (req, res) => {
+    try {
+        const { ids, updates } = req.body; 
+        const accountId = req.user.accountId;
+
+        if (!ids || !Array.isArray(ids) || ids.length === 0) {
+            return res.status(400).json({ message: "Aucun identifiant fourni." });
+        }
+
+        // Vérifie que tous les IDs sont des nombres
+        if (!ids.every(Number.isInteger)) {
+            return res.status(400).json({ message: "Le format des identifiants est invalide." });
+        }
+
+        // On vérifie que 'updates' existe pour éviter de crash au point 4
+        if (!updates || Object.keys(updates).length === 0) {
+            return res.status(400).json({ message: "Aucune donnée de mise à jour fournie." });
+        }
+
+        const user = await User.findOne({ where: { account_id: accountId } });
+        if (!user) return res.status(404).json({ message: "Utilisateur non trouvé." });
+
+        // Sécurité catégorie
+        if (updates.category_id) {
+            const category = await Category.findOne({ 
+                where: { id: updates.category_id, user_id: user.id } 
+            });
+            if (!category) return res.status(403).json({ message: "Catégorie cible invalide." });
+        }
+
+        // --- LA CORRECTION EST ICI ---
+        // On récupère le résultat complet sans déstructuration immédiate
+        const result = await Note.update(updates, {
+            where: {
+                id: { [Op.in]: ids },
+                user_id: user.id
+            }
+        });
+
+        // Sous Postgres, result est [count]. Sous d'autres, ça peut être juste count.
+        const updatedCount = Array.isArray(result) ? result[0] : result;
+
+        res.json({ 
+            message: `${updatedCount} note(s) mise(s) à jour.`,
+            count: updatedCount 
+        });
+    } catch (error) {
+        console.error("DEBUG BULK UPDATE ERROR:", error); 
+        // On renvoie l'erreur brute à Postman pour comprendre
+        res.status(500).json({ 
+            message: "Erreur lors de la mise à jour groupée.",
+            error: error.message,
+            stack: error.stack 
+        });
     }
 };

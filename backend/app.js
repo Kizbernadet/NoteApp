@@ -22,7 +22,7 @@ app.use(cookieParser());
 
 // Routing
 app.use("/auth", authRoutes);
-app.use("/user", userRoutes);
+app.use("/users", userRoutes);
 app.use('/tasks', taskRoutes);
 app.use('/categories', categoryRoutes);
 app.use("/notes", noteRoutes);
