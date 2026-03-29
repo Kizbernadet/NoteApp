@@ -1,3 +1,4 @@
+<?php $modal = $_GET['modal'] ?? null; ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,7 +19,7 @@
 <h2>NoteApp</h2>
 
 <!-- bouton connexion -->
-<button class="login-open-btn" onclick="openLogin()">Connexion</button>
+<a href="?modal=login" class="login-open-btn">Connexion</a>
 
 <ul>
 <li>Notes</li>
@@ -59,21 +60,26 @@
 </div>
 
 <!-- bouton ajouter -->
-<button class="add-btn" onclick="openModal()">+</button>
+<a href="?modal=note" class="add-btn">+</a>
 
-<!-- modal note -->
-<div class="modal" id="modal">
+<!-- MODAL NOTE -->
+<div class="modal <?= ($modal === 'note') ? 'show' : '' ?>" id="modal">
 <div class="modal-content">
+
 <h2>Nouvelle note</h2>
+
 <input type="text" placeholder="Titre">
-<textarea  rows="7" placeholder="Votre note"></textarea>
+<textarea rows="7" placeholder="Votre note"></textarea>
+
 <button>Enregistrer</button>
-<button onclick="closeModal()">Annuler</button>
+
+<a href="index.php">Annuler</a>
+
 </div>
 </div>
 
-<!-- modal connexion -->
-<div class="modal" id="loginModal">
+<!-- MODAL LOGIN -->
+<div class="modal <?= ($modal === 'login') ? 'show' : '' ?>" id="loginModal">
 
 <div class="modal-content login-box">
 
@@ -88,13 +94,11 @@
 <button class="signup">Inscription</button>
 </div>
 
-<button onclick="closeLogin()">Fermer</button>
+<a href="index.php">Fermer</a>
 
 </div>
 
 </div>
-
-<script src="js/script.js"></script>
 
 </body>
 </html>
