@@ -1,7 +1,8 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { Account, Role, User } from '../models/index.js';
+import { Account, Role, User, Category } from '../models/index.js';
 import { sequelize } from '../models/index.js'; 
+import { SYSTEM_COLORS } from '../utils/constants.js';
 
 export const login = async (req, res) => {
     try {
@@ -79,19 +80,26 @@ export const signup = async (req, res) => {
         }, { transaction: t });
 
         // 3. On crée le profil EN PASSANT AUSSI LA TRANSACTION
-        await User.create({
+        const newUser = await User.create({
             firstname,
             lastname,
             account_id: newAccount.id
         }, { transaction: t });
 
-        // 4. SI TOUT EST OK : On valide définitivement (Commit)
+        // 4. On crée la catégorie par défaut
+        const newCategory = await Category.create({
+            name: 'Général',
+            color: SYSTEM_COLORS.SLATE, // Un gris bleuté par défaut
+            user_id: newUser.id
+        }, { transaction: t });
+
+        // 5. SI TOUT EST OK : On valide définitivement (Commit)
         await t.commit();
 
-        res.status(201).json({ message: "Utilisateur créé avec succès !" });
+        res.status(201).json({ message: "Utilisateur créé avec succès avec sa catégorie par défaut !" });
 
     } catch (error) {
-        // 5. SI UNE ERREUR SURVIENT : On annule tout (Rollback)
+        // 6. SI UNE ERREUR SURVIENT : On annule tout (Rollback)
         // Même si le compte a été créé à l'étape 2, il sera supprimé de la BDD
         await t.rollback();
         
